@@ -5,7 +5,8 @@ const DataSchema=mongoose.Schema({
     ToDoSubject:{type:String},
     ToDoDescription:{type:String},
     ToDoStatus:{type:String, default:"New"},
-    ToDoDate:{type:Date, default:Date.now}
+    ToDoCreateDate:{type:Date, default:Date.now},
+    ToDoUpdateDate:{type:Date, default:Date.now}
 
 
 
