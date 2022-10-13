@@ -109,3 +109,17 @@ exports.UpdateStatusToDo=(req,res)=>{
         }
     })
 }
+
+exports.SelectToDoByDate=(req,res)=>{
+    let UserName=req.headers['username']
+    let FormDate = req.body['FormDate']
+    let ToDate = req.body['ToDate']
+    ToDoListModel.find({UserName:UserName, ToDoCreateDate:{$gte:new Date(FormDate), $gtl:new Date(ToDate)}},(err, data) =>{
+        if(err){
+            res.status(400).json({status:'fail',data:data})
+        }
+        else{
+            res.status(200).json({status:'success',data:data})
+        }
+    })
+}
