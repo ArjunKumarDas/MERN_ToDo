@@ -63,3 +63,22 @@ exports.UpdateToDo=(req,res)=>{
     }
   })
 }
+
+
+exports.UpdateStatusToDo=(req,res)=>{
+    let ToDoStatus = req.body['ToDoStatus'];
+    let _id = req.body['_id'];
+    let ToDoUpdateDate = Date.now();
+    let PostBody={
+      ToDoStatus:ToDoStatus,
+      ToDoUpdateDate:ToDoUpdateDate
+    }
+    ToDoListModel.updateOne({_id:_id},{$set:PostBody},{upsert:true},(err,data)=>{
+      if(err){
+          res.status(400).json({status:'fail',data:data})
+      }
+      else{
+          res.status(200).json({status:'success',data:data})
+      }
+    })
+  }
