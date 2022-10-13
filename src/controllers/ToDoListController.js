@@ -95,3 +95,17 @@ exports.UpdateStatusToDo=(req,res)=>{
       }
     })
   }
+
+
+  exports.SelectToDoByStatus=(req,res)=>{
+    let UserName=req.headers['username']
+    let ToDoStatus=req.body['ToDoStatus']
+    ToDoListModel.find({UserName:UserName, ToDoStatus:ToDoStatus},(err, data) =>{
+        if(err){
+            res.status(400).json({status:'fail',data:data})
+        }
+        else{
+            res.status(200).json({status:'success',data:data})
+        }
+    })
+}
